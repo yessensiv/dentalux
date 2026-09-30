@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --color-primary: #14b8a6;
+  --color-primary-light: #5eead4;
+  --color-primary-dark: #0d9488;
+  --color-navy: #0f172a;
+  --color-navy-light: #1e293b;
+  --color-gray-blue: #f0f4f8;
+  --color-gray-blue-dark: #e2e8f0;
+}
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-navy antialiased font-sans;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white font-semibold 
+      py-3 px-6 rounded-2xl transition-all duration-300 
+      hover:shadow-lg hover:shadow-primary/25 active:scale-[0.98]
+      focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-navy font-semibold 
+      py-3 px-6 rounded-2xl border border-gray-200 transition-all duration-300
+      hover:shadow-md active:scale-[0.98]
+      focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply bg-transparent hover:bg-primary/10 text-primary font-semibold 
+      py-3 px-6 rounded-2xl border-2 border-primary transition-all duration-300
+      active:scale-[0.98]
+      focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-xl rounded-2xl border border-white/20 shadow-lg;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 
+      hover:shadow-md transition-all duration-300;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 
+      bg-white text-navy placeholder-gray-400
+      focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary
+      transition-all duration-200;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-navy;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-500 mt-3 max-w-2xl;
+  }
+}
+
+@utility glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
