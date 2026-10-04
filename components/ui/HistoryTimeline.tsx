@@ -130,13 +130,13 @@ export default function HistoryTimeline() {
               </div>
 
               {/* Milestone Card */}
-              <div className="ml-16 md:ml-0 w-full md:w-[45%]">
+              <div className="ml-16 min-w-0 flex-1 md:ml-0 md:w-[45%] md:flex-none">
                 <motion.div
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
                   className="group relative bg-white p-6 sm:p-7 rounded-2xl md:rounded-3xl border border-slate-200/90 hover:border-black shadow-sm hover:shadow-xl transition-all duration-300"
                 >
                   {/* Top Bar inside card: Year badge + Category */}
-                  <div className="flex items-center justify-between gap-3 mb-3">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-bold tracking-wider">
                       {item.year}
                     </span>
@@ -146,11 +146,11 @@ export default function HistoryTimeline() {
                   </div>
 
                   {/* Header with Icon */}
-                  <div className="flex items-center gap-3 mb-2.5">
+                  <div className="mb-2.5 flex min-w-0 flex-wrap items-center gap-3">
                     <div className="w-9 h-9 rounded-xl bg-slate-100 group-hover:bg-black group-hover:text-white text-slate-800 flex items-center justify-center transition-colors duration-300 shrink-0">
                       {item.icon}
                     </div>
-                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-black transition-colors">
+                    <h3 className="min-w-0 text-base font-bold text-slate-900 transition-colors group-hover:text-black sm:text-lg">
                       {item.title}
                     </h3>
                   </div>
@@ -162,7 +162,7 @@ export default function HistoryTimeline() {
 
                   {/* Bottom Metric Pill */}
                   {item.metric && (
-                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
+                    <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 font-medium">
                       <span className="flex items-center gap-1.5 text-slate-900 font-semibold">
                         <span className="w-1.5 h-1.5 rounded-full bg-black" />
                         {item.metric}

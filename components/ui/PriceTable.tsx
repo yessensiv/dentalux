@@ -31,11 +31,11 @@ export default function PriceTable({ items, searchable = false }: PriceTableProp
         </div>
       )}
       <div className="overflow-hidden rounded-none border border-gray-100">
-        <table className="w-full">
+        <table className="w-full table-fixed">
           <thead>
             <tr className="bg-gray-50">
-              <th className="text-left p-4 text-sm font-semibold text-navy">Услуга</th>
-              <th className="text-right p-4 text-sm font-semibold text-navy">Стоимость</th>
+              <th className="p-2 text-left text-sm font-semibold text-navy sm:p-4">Услуга</th>
+              <th className="p-2 text-right text-sm font-semibold text-navy sm:p-4">Стоимость</th>
             </tr>
           </thead>
           <tbody>
@@ -44,12 +44,15 @@ export default function PriceTable({ items, searchable = false }: PriceTableProp
                 key={i}
                 className="border-t border-gray-100 hover:bg-gray-50/50 transition-colors"
               >
-                <td className="p-4 text-sm text-gray-700">{item.name}</td>
-                <td className="p-4 text-sm text-right font-medium text-navy whitespace-nowrap">
+                <td className="p-2 text-sm text-gray-700 sm:p-4">{item.name}</td>
+                <td className="p-2 text-right text-sm font-medium text-navy sm:p-4">
                   {item.note ? (
                     <span className="text-primary font-semibold">{item.note}</span>
                   ) : item.priceMax ? (
-                    `${formatPrice(item.price)} – ${formatPrice(item.priceMax)}`
+                    <span className="flex flex-col sm:flex-row sm:justify-end sm:gap-1">
+                      <span className="whitespace-nowrap">{formatPrice(item.price)}</span>
+                      <span className="whitespace-nowrap">– {formatPrice(item.priceMax)}</span>
+                    </span>
                   ) : (
                     formatPrice(item.price)
                   )}

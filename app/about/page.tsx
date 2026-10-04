@@ -99,7 +99,7 @@ export default function AboutPage() {
       {/* Equipment */}
       <Section>
         <SectionHeader title="Оборудование" subtitle="Мы работаем на лучшем оборудовании мировых производителей" />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-4 gap-4">
           {equipment.map((e) => (
             <div key={e} className="card p-4 text-center">
               <div className="w-12 h-12 bg-primary/10 rounded-none flex items-center justify-center mx-auto mb-3">

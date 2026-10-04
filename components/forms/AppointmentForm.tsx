@@ -86,11 +86,12 @@ export default function AppointmentForm() {
   return (
     <div>
       {/* Step indicator */}
-      <div className="flex items-center justify-between mb-8 max-w-lg mx-auto">
+      <div className="mb-8 mx-auto flex w-full max-w-lg items-start" aria-label="Шаги записи">
         {steps.map((s, i) => (
-          <div key={s.id} className="flex items-center">
-            <div className="flex flex-col items-center">
+          <div key={s.id} className={`flex min-w-0 items-start ${i < steps.length - 1 ? "flex-1" : "shrink-0"}`}>
+            <div className="flex shrink-0 flex-col items-center">
               <div
+                aria-current={step === s.id ? "step" : undefined}
                 className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-colors ${
                   step >= s.id
                     ? "bg-primary text-white"
@@ -108,7 +109,7 @@ export default function AppointmentForm() {
               <span className="text-xs mt-1 text-gray-600 hidden sm:block">{s.title}</span>
             </div>
             {i < steps.length - 1 && (
-              <div className={`w-12 sm:w-20 h-0.5 mx-2 ${step > s.id ? "bg-primary" : "bg-gray-200"}`} />
+              <div className={`mx-1 mt-5 h-0.5 min-w-0 flex-1 sm:mx-2 ${step > s.id ? "bg-primary" : "bg-gray-200"}`} />
             )}
           </div>
         ))}
@@ -304,12 +305,12 @@ export default function AppointmentForm() {
               </div>
               <Consent {...register("consent")} error={errors.consent?.message} />
               {error && <p role="alert" className="text-red-700 text-sm">{error}</p>}
-              <div className="flex gap-3">
+              <div className="flex flex-col-reverse gap-3 sm:flex-row">
                 <button type="button" onClick={() => setStep(3)} className="btn-secondary">
                   Назад
                 </button>
                 <button type="submit" disabled={isSubmitting} className="btn-primary flex-1 disabled:opacity-50">
-                  {isSubmitting ? "Проверка..." : PORTFOLIO_DEMO ? "Проверить демо-форму" : "Продолжить в WhatsApp"}
+                  {isSubmitting ? "Проверка..." : PORTFOLIO_DEMO ? "Завершить демо" : "Продолжить в WhatsApp"}
                 </button>
               </div>
               <p className="text-xs text-gray-400 text-center">

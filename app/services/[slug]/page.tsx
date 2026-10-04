@@ -9,6 +9,7 @@ import { priceCategories, formatPrice } from "@/data/prices";
 import Section, { SectionHeader } from "@/components/ui/Section";
 import Accordion from "@/components/ui/Accordion";
 import DoctorCard from "@/components/ui/DoctorCard";
+import PriceTable from "@/components/ui/PriceTable";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -48,17 +49,17 @@ export default async function ServiceDetailPage({
       {/* Hero */}
       <section className="relative bg-white border-b border-gray-200 py-16 md:py-24">
         <div className="section-container">
-          <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
+          <div className="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-600">
             <Link href="/" className="hover:text-primary transition-colors">Главная</Link>
             <span>/</span>
             <Link href="/services" className="hover:text-primary transition-colors">Услуги</Link>
             <span>/</span>
-            <span className="text-navy">{service.title}</span>
+            <span className="min-w-0 break-words text-navy">{service.title}</span>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="text-5xl mb-4 block">{getDentalIcon(service.id, "h-10 w-10")}</span>
-              <h1 className="text-4xl md:text-5xl font-bold text-navy mb-4">{service.title}</h1>
+              <h1 className="mb-4 break-words text-[clamp(26px,8vw,36px)] font-bold text-navy md:text-5xl">{service.title}</h1>
               <p className="text-lg text-gray-600 mb-6">{service.description}</p>
               <div className="flex items-center gap-4">
                 <Link href="/appointment" className="btn-primary">Записаться</Link>
@@ -104,32 +105,7 @@ export default async function ServiceDetailPage({
         <Section className="bg-gray-blue">
           <SectionHeader title="Стоимость" />
           <div className="max-w-3xl mx-auto">
-            <div className="overflow-hidden rounded-none border border-gray-100">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-gray-50">
-                    <th className="text-left p-4 text-sm font-semibold text-navy">Услуга</th>
-                    <th className="text-right p-4 text-sm font-semibold text-navy">Стоимость</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {priceCategory.items.map((item, i) => (
-                    <tr key={i} className="border-t border-gray-100">
-                      <td className="p-4 text-sm text-gray-700">{item.name}</td>
-                      <td className="p-4 text-sm text-right font-medium text-navy whitespace-nowrap">
-                        {item.note ? (
-                          <span className="text-primary font-semibold">{item.note}</span>
-                        ) : item.priceMax ? (
-                          `${formatPrice(item.price)} – ${formatPrice(item.priceMax)}`
-                        ) : (
-                          formatPrice(item.price)
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <PriceTable items={priceCategory.items} />
           </div>
         </Section>
       )}
